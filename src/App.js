@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +11,7 @@ import {
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Destination from './components/Destination/Destination';
+import Login from './components/Login/Login';
 
 function App() {
   return (
@@ -26,6 +26,12 @@ function App() {
         </Route>
         <Route path='/destination'>
           <Destination></Destination>
+        </Route>
+        <Route path='/destination/vehicle/:vehicleName'>
+          <Destination></Destination>
+        </Route>
+        <Route path='/login'>
+          <Login></Login>
         </Route>
       </Switch>
     </Router>

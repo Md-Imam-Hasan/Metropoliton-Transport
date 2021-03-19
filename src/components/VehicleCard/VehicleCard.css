@@ -1,4 +1,10 @@
 .vehicle .card{
   width: 270px;
   height: 264px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.vehicle Link{
+  color: black;
+  text-decoration: none;
 }

@@ -1,0 +1,33 @@
+form>input{
+  width: 400px;
+  display: block;
+  margin: 25px 20px;
+  border: none;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.568);
+}
+input:focus{
+  outline: none;
+}
+.login span{
+  color: #dc3545;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.login span:hover{
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-customise{
+  border-radius: 30px;
+  border: 1px solid #dc3545;
+  height: 50px;
+  width: 400px;
+}
+.btn-customise:hover{
+  border: 2px solid #dc3545;
+}
+.btn-customise img{
+  margin: 0 8px;
+  height: 30px;
+}
+

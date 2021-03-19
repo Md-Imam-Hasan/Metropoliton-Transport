@@ -1,0 +1,26 @@
+.destination form{
+  background: rgba(128, 128, 128, 0.171);
+  padding: 18px;
+  border-radius: 10px;
+}
+.search-result{
+  background: rgba(128, 128, 128, 0.171);
+  border-radius: 10px;
+}
+.circle{
+  height: 12px;
+  width: 12px;
+  background: white;
+  border-radius: 50%;
+}
+.line{
+  width: 2px;
+  height: 42px;
+  background: white;
+}
+.vehicle{
+  height: 50px;
+}
+.icon{
+  height: 20px;
+}

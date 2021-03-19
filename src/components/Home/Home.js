@@ -9,9 +9,9 @@ const Home = () => {
     setVehicleData(data);
   },[])
   return (
-    <div className='home d-flex justify-content-around align-items-center'>
+    <div className='home d-flex justify-content-around'>
       {
-        vehicleData.map(vehicle => <VehicleCard vehicle={vehicle}></VehicleCard>)
+        vehicleData.map(vehicle => <VehicleCard className='vehicle-card' key={vehicle.id} vehicle={vehicle}></VehicleCard>)
       }
     </div>
   );

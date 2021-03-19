@@ -13,7 +13,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="ml-auto navbar-nav">
-              <li className="nav-item mr-5 active">
+              <li className="nav-item mr-5">
                 <Link className="nav-link" to="/home">Home</Link>
               </li>
               <li className="nav-item mr-5">
@@ -26,7 +26,9 @@ const Header = () => {
                 <Link className="nav-link" to="/contact">Contact</Link>
               </li>
             </ul>
-            <button className='btn btn-danger'>Login</button>
+            <Link to='/login'>
+              <button className='btn btn-danger'>Login</button>
+            </Link>
           </div>
         </div>
       </nav>

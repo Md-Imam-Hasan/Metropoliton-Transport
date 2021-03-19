@@ -1,4 +1,7 @@
 .home{
+  padding-top: 130px;
+  padding-right: 90px;
+  padding-left: 90px;
   height: 91vh;
   width: 100vw;
   background-image: url('../../images/Bg.png');
