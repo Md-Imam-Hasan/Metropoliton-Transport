@@ -9,12 +9,26 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Home from './components/Home/Home';
+import Header from './components/Header/Header';
+import Destination from './components/Destination/Destination';
 
 function App() {
   return (
-    <div className="App">
-      <h1>HI ok 200</h1>
-    </div>
+    <Router>
+      <Header></Header>
+      <Switch>
+        <Route exact path='/'>
+          <Home></Home>
+        </Route>
+        <Route path='/home'>
+          <Home></Home>
+        </Route>
+        <Route path='/destination'>
+          <Destination></Destination>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
