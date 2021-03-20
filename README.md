@@ -1,6 +1,6 @@
 # Metropolitan Transport
 ***
-It is a website which gives different types of ****
+This project mainly focused user authentication and form validation. I use custom react-hooks for form validation
 
 **Version: 1.0.0**
 
