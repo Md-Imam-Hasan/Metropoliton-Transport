@@ -4,17 +4,19 @@ import map from '../../images/Map.png'
 import { useParams } from 'react-router';
 import data from '../data/data.json'
 import SearchResult from '../SearchResult/SearchResult';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { MapContainer } from '../MapContainer/MapContainer';
 
 const Destination = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   let { vehicleName } = useParams();
-  if(!vehicleName){
+  if (!vehicleName) {
     vehicleName = 'CAR';
   }
   const [vehicleData, setVehicleData] = useState([]);
-  const [path,setPath] = useState({
-    pickFrom:'',
-    pickTo:''
+  const [path, setPath] = useState({
+    pickFrom: '',
+    pickTo: ''
   })
   useEffect(() => {
     setVehicleData(data);
@@ -23,16 +25,17 @@ const Destination = () => {
 
 
   const handleBlur = (e) => {
-    console.log(e.target.name,e.target.value);
-    let newPath = {...path};
+    console.log(e.target.name, e.target.value);
+    let newPath = { ...path };
     newPath[e.target.name] = e.target.value;
     setPath(newPath);
   }
+  let mapURL='https://www.google.com/maps/embed/v1/view?zoom=11&center=23.8103%2C90.4125&key=AIzaSyCcJQ-mBUbB4O_VvmZBw09at2ORu_32joI';
   return (
     <div className='destination mt-4'>
       <div className="container">
         <div className="row">
-          <div className="col-4">
+          <div className="col-sm-4 col-12">
             {!isFormSubmitted && <form onSubmit={() => setIsFormSubmitted(true)} className='form-group'>
               <div className="mb-3">
                 <label htmlFor="pickFrom" className='form-label'>Pick From</label>
@@ -49,11 +52,11 @@ const Destination = () => {
               <div className="mb-3">
                 <input type="submit" className='btn-danger form-control' value="Search" />
               </div>
-            </form> }
+            </form>}
             {isFormSubmitted && <SearchResult path={path} vehicle={vehicle}></SearchResult>}
           </div>
-          <div className="col-8 ">
-            <img src={map} alt="" />
+          <div className="col-sm-8 col-12">
+          <iframe title='map'  style={{border:'0',width:'100%',minHeight:"500px"}} src={mapURL}></iframe>
           </div>
         </div>
       </div>
@@ -62,3 +65,4 @@ const Destination = () => {
 };
 
 export default Destination;
+

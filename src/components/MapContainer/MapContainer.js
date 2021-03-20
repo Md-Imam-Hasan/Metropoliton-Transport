@@ -1,0 +1,20 @@
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import React, { Component } from 'react';
+
+export class MapContainer extends Component {
+  render() {
+    return (
+      <Map google={this.props.google} zoom={14}>
+
+        <Marker onClick={this.onMarkerClick}
+          name={'Current location'} />
+
+        
+      </Map>
+    );
+  }
+}
+
+export default GoogleApiWrapper({
+  apiKey: ("AIzaSyCcJQ-mBUbB4O_VvmZBw09at2ORu_32joI")
+})(MapContainer)

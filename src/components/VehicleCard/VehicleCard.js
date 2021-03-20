@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './VehicleCard.css';
 
 const VehicleCard = (props) => {
-  const { name, img, id } = props.vehicle;
+  const { name, img } = props.vehicle;
   return (
     <div className='vehicle'>
       <Link to={'/destination/vehicle/' + name}>
