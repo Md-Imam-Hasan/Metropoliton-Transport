@@ -1,11 +1,40 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import {  } from '@fortawesome/free-solid-svg-icons';
 import GoogleIcon from '../../images/Group 573.png'
+import { handleGoogleSignIn, initializeFirebase } from './LoginManager';
+import { UserContext } from '../../App';
+import { useHistory, useLocation } from 'react-router';
+
+initializeFirebase();
 
 const Login = () => {
   const [newUser, setNewUser] = useState(true)
+  const [user, setUser] = useState({
+    signIn: false,
+    name: '',
+    email: '',
+    password: '',
+    password1:''
+  });
+
+  const [userName, setUserName] = useContext(UserContext);
+
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
+
+  const handleResponse = (res, isRedirect) => {
+    setUser(res);
+    setUserName(res.name);
+    // setLoggedInUser(res);
+    isRedirect && history.replace(from);
+  }
+  const googleSignIn = () => {
+    handleGoogleSignIn()
+      .then(res => {
+        handleResponse(res, true);
+      })
+  }
   const handleSubmit = () => {
 
   }
@@ -17,12 +46,12 @@ const Login = () => {
         <div className='container login-form'>
           <form onSubmit={handleSubmit}>
             {newUser && <input type="text" name='name' placeholder='Name' required />}
-            <input type="email" name="email" id="" placeholder='Email' required />
-            <input type="password" name="password1" id="" placeholder='Password' required />
-            {newUser && <input type="password" name="password2" id="" placeholder='Confirm Password' required />}
+            <input type="email" name="email"  placeholder='Email' required />
+            <input type="password" name="password1"  placeholder='Password' required />
+            {newUser && <input type="password" name="password2"  placeholder='Confirm Password' required />}
             {!newUser && <div className='px-4 d-flex justify-content-between'>
               <div>
-                <input className='mr-1' type="checkbox" name="remember" id="" />
+                <input className='mr-1' type="checkbox" name="remember"  />
                 <label htmlFor="remember">Remember Me</label>
               </div>
               <div>
@@ -38,7 +67,7 @@ const Login = () => {
       </div>
       <div className='text-center'>
         <big className='p-3 bg-white d-inline-block'>Or</big>
-        <button className='btn btn-block btn-customise d-flex justify-content-center align-items-center'> <img src={GoogleIcon} alt="" /> Continue with Google </button>
+        <button className='btn btn-block btn-customise d-flex justify-content-center align-items-center' onClick={googleSignIn}> <img src={GoogleIcon} alt="" /> Continue with Google </button>
       </div>
     </div>
   );

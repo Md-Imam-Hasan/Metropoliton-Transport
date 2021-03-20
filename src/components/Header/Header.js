@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import { UserContext } from '../../App';
 
 const Header = () => {
+  const [userName, setUserName] = useContext(UserContext);
   return (
     <div className='header'>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <div className='container'>
-          <Link className="navbar-brand" to="/">Navbar</Link>
+          <Link className="navbar-brand" to="/">
+            <h4 className='text-info'>Metropolitan Transport</h4>
+          </Link>
           <button className="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -26,9 +30,9 @@ const Header = () => {
                 <Link className="nav-link" to="/contact">Contact</Link>
               </li>
             </ul>
-            <Link to='/login'>
+            {!userName?<Link to='/login'>
               <button className='btn btn-danger'>Login</button>
-            </Link>
+            </Link>:<h5 className='text-danger my-auto'>{userName}</h5>}
           </div>
         </div>
       </nav>

@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className='home d-flex justify-content-around'>
       {
-        vehicleData.map(vehicle => <VehicleCard className='vehicle-card' key={vehicle.id} vehicle={vehicle}></VehicleCard>)
+        vehicleData.map(vehicle => <VehicleCard key={vehicle.id} className='vehicle-card' key={vehicle.id} vehicle={vehicle}></VehicleCard>)
       }
     </div>
   );
