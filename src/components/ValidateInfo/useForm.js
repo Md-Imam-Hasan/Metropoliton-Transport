@@ -17,12 +17,10 @@ const useForm = (callback, validate) => {
       ...values,
       [name]: value
     });
-    console.log(values);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-
     setErrors(validate(values));
     setIsSubmitting(true);
   };

@@ -15,7 +15,6 @@ export const handleGoogleSignIn = () => {
     .then(res => {
       const { displayName, email } = res.user;
       const signInUser = {
-        signIn: true,
         name: displayName,
         email: email,
         success: true
@@ -38,7 +37,6 @@ export const handleNewUserWithEmailAndPassword = (name, email, password) => {
       newUserInfo.error = '';
       newUserInfo.success = true;
       updateUserName(name);
-      console.log(newUserInfo);
       return newUserInfo;
     })
     .catch((error) => {

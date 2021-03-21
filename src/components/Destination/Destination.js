@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Destination.css';
-import map from '../../images/Map.png'
 import { useParams } from 'react-router';
 import data from '../data/data.json'
 import SearchResult from '../SearchResult/SearchResult';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-import { MapContainer } from '../MapContainer/MapContainer';
 
 const Destination = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
@@ -23,9 +20,7 @@ const Destination = () => {
   }, [])
   const vehicle = vehicleData.find(vehicle => vehicle.name === vehicleName);
 
-
   const handleBlur = (e) => {
-    console.log(e.target.name, e.target.value);
     let newPath = { ...path };
     newPath[e.target.name] = e.target.value;
     setPath(newPath);

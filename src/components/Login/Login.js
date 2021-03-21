@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css';
 import GoogleIcon from '../../images/Group 573.png'
 import { handleGoogleSignIn, handleNewUserWithEmailAndPassword, handleSignInWithEmailAndPassword, initializeFirebase } from './LoginManager';
@@ -10,30 +10,27 @@ import validateInfo from '../ValidateInfo/ValidateInfo';
 initializeFirebase();
 
 const Login = () => {
-  const [newUser, setNewUser] = useState(true);
+  const [newUser, setNewUser] = useState(false);
 
   function submitForm() {
     const { name, email, password1 } = values;
-    console.log(name, email, password1);
     if (newUser) {
       handleNewUserWithEmailAndPassword(name, email, password1)
-        .then(res => {
-          console.log(res);
-          handleResponse(res, true);
-        })
-    } else {
-      handleSignInWithEmailAndPassword(email, password1)
         .then(res => {
           handleResponse(res, true);
         })
     }
+    if (!newUser) {
+      handleSignInWithEmailAndPassword(email, password1)
+        .then(res => {
+          res.success? handleResponse(res, true):handleResponse(res, false);
+        })
+    }
   }
   const [user, setUser] = useState({
-    signIn: false,
     name: '',
     email: '',
-    password1: '',
-    password2: ''
+    success: false
   });
   let { handleChange, handleSubmit, values, errors } = useForm(submitForm, validateInfo);
   const [userName, setUserName] = useContext(UserContext);
@@ -104,10 +101,13 @@ const Login = () => {
                 <span>Forget Password</span>
               </div>
             </div>}
-            <input className='mt-1 btn btn-submit btn-lg btn-danger' type="submit"  value={newUser ? 'Create an account' : 'Login'} />
+            <input className='mt-1 btn btn-submit btn-lg btn-danger' type="submit" value={newUser ? 'Create an account' : 'Login'} />
           </form>
           <div className='text-center'>
             {newUser ? <p>Already have an account? <span onClick={() => setNewUser(!newUser)}>Login</span></p> : <p>Don't have an account? <span onClick={() => setNewUser(!newUser)}>Create an account</span></p>}
+          </div>
+          <div className="text-center">
+            {!user.success && <p style={{ color: 'red' }}>{user.error}</p>}
           </div>
         </div>
       </div>
